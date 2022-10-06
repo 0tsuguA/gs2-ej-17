@@ -18,10 +18,10 @@ $cmc = 0;
 if ($req->NroPoliza > 1000 and $req->NroPoliza < 0) {
     $r->IsOk = false;
     $r->Mensaje[] = 'La poliza no existe';
-} elseif ($req->Vehiculo = null) {
+} elseif ($req->Vehiculo == null) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar el vehiculo. ';
-} elseif ($req->Vehiculo->Marca = null or $req->Vehiculo->Modelo = null or $req->Vehiculo->Version = null or $req->Vehiculo->Anio = null) {
+} elseif ($req->Vehiculo->Marca == null or $req->Vehiculo->Modelo == null or $req->Vehiculo->Version == null or $req->Vehiculo->Anio == null) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar todas las propiedades del vehiculo. ';
     foreach ($req->ListMediosContacto as $mc) {
@@ -34,3 +34,5 @@ if ($req->NroPoliza > 1000 and $req->NroPoliza < 0) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar medios de contacto válidos. ';
 }
+
+echo json_encode($r);
