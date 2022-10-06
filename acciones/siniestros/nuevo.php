@@ -21,16 +21,20 @@ if ($req->NroPoliza > 1000 and $req->NroPoliza < 0) {
 } elseif ($req->Vehiculo == null) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar el vehiculo. ';
-} elseif ($req->Vehiculo->Marca == null or $req->Vehiculo->Modelo == null or $req->Vehiculo->Version == null or $req->Vehiculo->Anio == null) {
+}
+if ($req->Vehiculo->Marca == null or $req->Vehiculo->Modelo == null or $req->Vehiculo->Version == null or $req->Vehiculo->Anio == null) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar todas las propiedades del vehiculo. ';
-    foreach ($req->ListMediosContacto as $mc) {
-        $cmc = $cmc + 1;
-    }
-} elseif ($cmc <= 0) {
+}
+
+foreach ($req->ListMediosContacto as $mc) {
+    $cmc = $cmc + 1;
+}
+if ($cmc <= 0) {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar al menos un medio de contacto. ';
-} elseif ($req->MedioContactoDescripcion != 'Celular' or $req->MedioContactoDescripcion != 'Mail') {
+}
+if ($req->MedioContactoDescripcion != 'Celular' or $req->MedioContactoDescripcion != 'Mail') {
     $r->IsOk = false;
     $r->Mensaje[] = 'Debe indicar medios de contacto válidos. ';
 }
